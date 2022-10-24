@@ -1,3 +1,4 @@
 export default {
-  mainPage: () => '/',
+  mainPage: () => "/",
+  newsItemPage: (id) => `/news/${id}`,
 };

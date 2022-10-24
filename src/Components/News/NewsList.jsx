@@ -16,15 +16,16 @@ export default () => {
     dispatch(getNews(newsIds));
   }, [newsIds]);
 
-  if (isLoaded === type.DATA_LOADING) {
-    return (
-      <div className="row justify-content-center align-items-center h-100 mt-3">
-        <Spinner animation="border" variant="dark" />
-      </div>
-    );
-  }
+  // if (isLoaded === type.DATA_LOADING) {
+  //   return (
+  //     <div className="row justify-content-center align-items-center h-100 mt-3">
+  //       <Spinner animation="border" variant="dark" />
+  //     </div>
+  //   );
+  // }
   return (
     <div className="container h-100 my-3">
+      {(isLoaded === type.DATA_LOADING) && <div className="row justify-content-center align-items-center h-100 mt-3"><Spinner animation="border" variant="dark" /></div>}
       {news.map((item) => (
         <NewsItem
           key={item.id}

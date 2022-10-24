@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { routes } from "../../utils";
-import { getComments, deleteComments } from "../../Store/actions";
+import { getComments, deleteComments, setCurrentId } from "../../Store/actions";
 import CommentsList from "./CmmentsList";
 
 export default () => {
@@ -14,7 +14,7 @@ export default () => {
     if (kids) dispatch(getComments(kids));
   }, []);
   useEffect(() => () => {
-    // dispatch(setCurrentId());
+    dispatch(setCurrentId());
     dispatch(deleteComments());
   }, []);
   return (
