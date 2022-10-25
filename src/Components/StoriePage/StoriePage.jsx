@@ -7,11 +7,11 @@ import CommentsList from "./CmmentsList";
 
 export default () => {
   const { by, title, url, time, score } = useSelector((state) => state.stories.currentStorie);
-  const { kids } = useSelector((state) => state.stories.currentStorie);
+  const { kids, id } = useSelector((state) => state.stories.currentStorie);
   const comments = useSelector((state) => state.comments.storieComments);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (kids) dispatch(getComments(kids));
+    if (kids) dispatch(getComments(id));
   }, []);
   useEffect(() => () => {
     dispatch(setCurrentId());
@@ -28,11 +28,9 @@ export default () => {
                 <div className="row">
                   <div className="col">
                     <b className="p-1">{`${by}`}</b>
-                    <span className="">{`posted ${time} ago`}</span>
-                    <span className="">{`Comments: ${comments.length}`}</span>
-                  </div>
-                  <div className="col">
-                    <div className="position-absolute end-0"><span>{`score:${score}`}</span></div>
+                    <span className="p-1">{`posted ${time} ago`}</span>
+                    <div><span className="p-1">{`comments: ${comments.length}`}</span></div>
+                    <div className="p-1"><span>{`score:${score}`}</span></div>
                   </div>
                 </div>
               </div>

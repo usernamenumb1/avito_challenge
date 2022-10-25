@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getNewsIds, refreshComments, deleteComments } from "../Store/actions";
+import { getNewsIds, getComments, deleteComments } from "../Store/actions";
 
 export default () => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ export default () => {
   const handleCommentsClick = () => {
     const { id } = currentStorie;
     dispatch(deleteComments());
-    dispatch(refreshComments(id));
+    dispatch(getComments(id));
   };
   return (
     <nav className="shadow-lg navbar navbar-expand-lg navbar-light bg-white rounded-5">

@@ -29,7 +29,7 @@ export const getNews = (arr) => (dispatch) => {
   });
 };
 
-export const refreshComments = (id) => (dispatch) => {
+export const getComments = (id) => (dispatch) => {
   axios
     .get(`${constants.BASE_URL}item/${id}.json?print=pretty`)
     .then(({ data }) => {
@@ -41,7 +41,7 @@ export const refreshComments = (id) => (dispatch) => {
       return Promise.all(promisedArray)
         .then((data1) =>
           data1.map((item) => {
-            if (item.data.kids) dispatch(refreshComments(item.data.id));
+            if (item.data.kids) dispatch(getComments(item.data.id));
             return item.data;
           })
         )
@@ -50,16 +50,16 @@ export const refreshComments = (id) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const getComments = (arr) => (dispatch) => {
-  const promisedArray = arr.map((item) =>
-    axios.get(`${constants.BASE_URL}item/${item}.json?print=pretty`)
-  );
-  Promise.all(promisedArray)
-    .then((data) =>
-      data.map((item) => {
-        if (item.data.kids) dispatch(getComments(item.data.kids));
-        return item.data;
-      })
-    )
-    .then((data) => dispatch({ type: type.ADD_COMENTS, payload: data }));
-};
+// export const getComments = (arr) => (dispatch) => {
+//   const promisedArray = arr.map((item) =>
+//     axios.get(`${constants.BASE_URL}item/${item}.json?print=pretty`)
+//   );
+//   Promise.all(promisedArray)
+//     .then((data) =>
+//       data.map((item) => {
+//         if (item.data.kids) dispatch(getComments(item.data.kids));
+//         return item.data;
+//       })
+//     )
+//     .then((data) => dispatch({ type: type.ADD_COMENTS, payload: data }));
+// };
