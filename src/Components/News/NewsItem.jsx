@@ -1,9 +1,10 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { setCurrentId } from "../../Store/actions";
 
-export default ({ id, title, author, time, rank }) => {
+const NewsItem = ({ id, title, author, time, rank }) => {
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(setCurrentId(id));
@@ -27,3 +28,21 @@ export default ({ id, title, author, time, rank }) => {
     </div>
   );
 };
+
+NewsItem.defaultProps = {
+  id: 0,
+  author: 'John',
+  title: 'Some text',
+  time: 'some time',
+  rank: 0,
+};
+
+NewsItem.propTypes = {
+  id: PropTypes.number,
+  author: PropTypes.string,
+  title: PropTypes.string,
+  time: PropTypes.string,
+  rank: PropTypes.number,
+};
+
+export default NewsItem;

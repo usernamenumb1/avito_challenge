@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import PropTypes from 'prop-types';
 
 const CommentComponent = ({ id, author, text }) => {
   const [showComments, setShowComments] = useState(false);
@@ -11,7 +12,7 @@ const CommentComponent = ({ id, author, text }) => {
     setShowComments(!showComments);
   };
   return (
-    <div className="row pb-3 end">
+    <div className="row pb-3 ps-3">
       <div className="card border-0 shadow">
         <div className="card-body">
           <div className="card-text">
@@ -24,6 +25,18 @@ const CommentComponent = ({ id, author, text }) => {
       {showComments && kidComments.map((comment) => <CommentComponent key={comment.id} id={comment.id} author={comment.by} text={comment.text} />)}
     </div>
   );
+};
+
+CommentComponent.defaultProps = {
+  id: 0,
+  author: 'John',
+  text: 'Some text'
+};
+
+CommentComponent.propTypes = {
+  id: PropTypes.number,
+  author: PropTypes.string,
+  text: PropTypes.string,
 };
 
 export default CommentComponent;
